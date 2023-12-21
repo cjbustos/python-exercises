@@ -67,12 +67,27 @@ def loader(empty_matrix):
 
 def check(matrix):
     row_list = []
+    column_list = []
+    temp = []
     for row in matrix:
         row_list.append(sum(row))
     print(row_list)
-    print(matrix)
+    for index_1, row in enumerate(matrix):
+        for index_2, element in enumerate(row):
+            # Matriz transpuesta
+            temp.append(matrix[index_2][index_1])
+        column_list.append(sum(temp))
+        temp = []
+    print(column_list)
+    for index_1, row in enumerate(matrix):
+        for index_2, element in enumerate(row):
+            if index_1 == index_2:
+                temp.append(element)
+    print(sum(temp))
 
 opcion = ""
+
+# menu
 while opcion not in ["L", "E", "1", "2", "3", "4", "5", "6", "7"]:
     opcion = input("Seleccione la opcion: ").upper()
     if opcion == "L":
@@ -80,7 +95,7 @@ while opcion not in ["L", "E", "1", "2", "3", "4", "5", "6", "7"]:
         matrix = loader(empty_matrix)
         check(matrix)
     elif opcion in [str(n) for n in range(1,8)]:
-        print(opcion)
+        #print(opcion)
         check(matrices[int(opcion)])
     else:
         exit()
